@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akruthi Steel Fabrication | Solapur</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.92)),
+                        url('https://c8.alamy.com/comp/2T5FB41/a-beautiful-idol-of-maa-durga-being-worshipped-at-a-pandal-during-navratri-in-mumbai-india-2T5FB41.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #f8fafc;
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 3px solid #f59e0b;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .brand-info h1 {
+            color: #fbbf24;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .brand-info p {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+        }
+
+        .header-contacts {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-call {
+            background-color: #25d366;
+            color: #fff;
+        }
+
+        .btn-call:hover {
+            background-color: #1eb855;
+            transform: translateY(-2px);
+        }
+
+        .btn-admin {
+            background-color: #3b82f6;
+            color: #fff;
+        }
+
+        .btn-admin:hover {
+            background-color: #2563eb;
+        }
+
+        .btn-cart {
+            background-color: #f59e0b;
+            color: #0f172a;
+            position: relative;
+        }
+
+        .btn-cart:hover {
+            background-color: #d97706;
+            color: #fff;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .hero-card {
+            background: rgba(30, 41, 59, 0.85);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .info-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .info-box i {
+            font-size: 1.8rem;
+            color: #fbbf24;
+            background: rgba(251, 191, 36, 0.1);
+            padding: 12px;
+            border-radius: 12px;
+        }
+
+        .info-box div h4 {
+            color: #94a3b8;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .info-box div p {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #f1f5f9;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #fbbf24;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid rgba(251, 191, 36, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .admin-panel {
+            display: none;
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid #3b82f6;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 30px;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .admin-panel.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #1e293b;
+            color: #fff;
+            font-size: 0.95rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #fbbf24;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .work-card {
+            background: rgba(30, 41, 59, 0.85);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .work-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
+            border-color: #fbbf24;
+        }
+
+        .img-container {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+            background: #0f172a;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .work-card:hover .img-container img {
+            transform: scale(1.08);
+        }
+
+        .card-body {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #f8fafc;
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            margin-bottom: 15px;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-add-cart {
+            flex: 1;
+            background: #f59e0b;
+            color: #0f172a;
+            justify-content: center;
+        }
+
+        .btn-add-cart:hover {
+            background: #d97706;
+            color: #fff;
+        }
+
+        .btn-delete {
+            background: #ef4444;
+            color: white;
+            padding: 8px 12px;
+        }
+
+        .btn-delete:hover {
+            background: #dc2626;
+        }
+
+        .order-section {
+            background: rgba(30, 41, 59, 0.9);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            margin-top: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .cart-items-list {
+            margin-bottom: 25px;
+            max-height: 250px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #1e293b;
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #334155;
+        }
+
+        .cart-item-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cart-item-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        .btn-remove-item {
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: #25d366;
+            color: white;
+            padding: 14px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #1eb855;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin-top: 40px;
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 640px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header-contacts {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .hero-card {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="brand-info">
+                <h1><i class="fa-solid fa-industry"></i> Akruthi Steel Fabrication</h1>
+                <p>Quality Steel & Grill Fabrication Work | Solapur</p>
+            </div>
+            <div class="header-contacts">
+                <button class="btn btn-admin" onclick="toggleAdminPanel()"><i class="fa-solid fa-user-gear"></i> Owner Panel</button>
+                <a href="#orderSection" class="btn btn-cart">
+                    <i class="fa-solid fa-cart-shopping"></i> Selected Designs
+                    <span class="cart-badge" id="cartCount">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <div class="hero-card">
+            <div class="info-box">
+                <i class="fa-solid fa-user-tie"></i>
+                <div>
+                    <h4>Owner</h4>
+                    <p>Munna Katakdhond</p>
+                </div>
+            </div>
+            <div class="info-box">
+                <i class="fa-solid fa-phone"></i>
+                <div>
+                    <h4>Call / WhatsApp</h4>
+                    <p><a href="tel:9370550195" style="color: inherit; text-decoration: none;">+91 9370550195</a></p>
+                </div>
+            </div>
+            <div class="info-box">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                    <h4>Address</h4>
+                    <p>Shahir Vasati, Bhavani Peth, Solapur - 413002</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-panel" id="adminPanel">
+            <h3 class="section-title" style="font-size:1.2rem; color:#3b82f6;">
+                <i class="fa-solid fa-sliders"></i> Owner Management Controls
+            </h3>
+            <form id="addImageForm" onsubmit="addNewWork(event)">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <div class="form-group">
+                        <label>Design Title</label>
+                        <input type="text" id="newTitle" class="form-control" placeholder="e.g., SS Balcony Grill" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Image Direct URL</label>
+                        <input type="url" id="newImgUrl" class="form-control" placeholder="https://example.com/image.jpg" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category / Type</label>
+                        <input type="text" id="newCategory" class="form-control" placeholder="e.g., Main Gate, Window Grill" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-admin" style="margin-top: 10px;"><i class="fa-solid fa-plus"></i> Add Design to Portfolio</button>
+            </form>
+        </div>
+
+        <div class="section-title">
+            <span><i class="fa-solid fa-layer-group"></i> Work References & Design Catalog</span>
+            <span style="font-size:0.85rem; color:#cbd5e1; font-weight:normal;">Scroll down to view designs & add to inquiry</span>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid"></div>
+
+        <div class="order-section" id="orderSection">
+            <h3 class="section-title">
+                <span><i class="fa-solid fa-clipboard-check"></i> Book Selected Designs & Send Inquiry</span>
+            </h3>
+
+            <div style="margin-bottom: 20px;">
+                <h4 style="margin-bottom: 10px; color:#cbd5e1;">Your Selected Designs (<span id="selectedCountText">0</span>)</h4>
+                <div class="cart-items-list" id="cartList">
+                    <p style="color:#94a3b8; font-style:italic;">No designs selected yet. Click "Select Design" on any product above!</p>
+                </div>
+            </div>
+
+            <form id="customerForm" onsubmit="sendWhatsAppOrder(event)">
+                <h4 style="margin-bottom: 15px; color:#fbbf24;"><i class="fa-solid fa-user-pen"></i> Customer Details Form</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px;">
+                    <div class="form-group">
+                        <label>Your Full Name *</label>
+                        <input type="text" id="custName" class="form-control" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mobile / Phone Number *</label>
+                        <input type="tel" id="custMobile" class="form-control" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+                    </div>
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label>Delivery / Site Address *</label>
+                        <textarea id="custAddress" class="form-control" rows="2" placeholder="Enter complete address in Solapur or nearby" required></textarea>
+                    </div>
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label>Specific Requirements / Custom Dimensions (Optional)</label>
+                        <input type="text" id="custNotes" class="form-control" placeholder="e.g. Need 4ft x 6ft Window Grill with Rust-proof Polish">
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn" style="margin-top: 15px;">
+                    <i class="fa-brands fa-whatsapp" style="font-size:1.4rem;"></i> Confirm & Send Details to Owner on WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Akruthi Steel Fabrication, Solapur. Owner: Munna Katakdhond (9370550195). All Rights Reserved.
+    </footer>
+
+    <script>
+        const fallbackImage = 'https://via.placeholder.com/400x300?text=Akruthi+Steel+Work';
+
+        const initialWorks = [
+            { id: 1, title: "Heavy Structural Steel Fabrication", category: "Structural Work", img: "https://5.imimg.com/data5/NP/UP/MY-52906817/fabrication-work.png" },
+            { id: 2, title: "All Types Industrial Fabrication", category: "Industrial Fabrication", img: "https://www.sanjayindustries.co.in/images/All-Types-Of-fabrication-work.jpg" },
+            { id: 3, title: "Steel & Metal Steel Fabrication", category: "Steel Metal", img: "https://productimages.withfloats.com/serviceimages/tile/63937b19ca1d6ab17df2fc5e7f46d800-4151-4be4-a3f3-ff25fd8deb47.jpg" },
+            { id: 4, title: "Custom Welding & Shed Fabrication", category: "Welding & Shed", img: "https://content.jdmagicbox.com/comp/chandigarh/r2/0172px172.x172.180707064854.a1r2/catalogue/amar-fabrication-work-kharar-mohali-fabricators-1ub0hgw9jw.jpg" },
+            { id: 5, title: "Safety Grill & Gate Fabrication", category: "Grill Work", img: "https://images.jdmagicbox.com//comp/service_catalogue/grill-and-fabrication-work-033pxx33.xx33.200927095007.f7x9-ddavmte.jpg" },
+            { id: 6, title: "SS Stainless Steel Custom Works", category: "SS Fabrication", img: "https://kmwcindia.com/wp-content/uploads/2023/10/SS-Fabrication-Work.webp" },
+            { id: 7, title: "Decorative Safety Grill Fabrication", category: "Grill Fabrication", img: "https://tiimg.tistatic.com/fp/1/009/306/grill-fabrication-963.jpg" },
+            { id: 8, title: "Balcony & Terrace Grill Works", category: "Terrace Grill", img: "https://tiimg.tistatic.com/fp/1/008/609/grills-fabrication-works-282.jpg" },
+            { id: 9, title: "Aluminium & Steel Window Framing", category: "Window Fabrication", img: "https://content.jdmagicbox.com/v2/v2/comp/hyderabad/p3/040pxx40.xx40.240209220134.s2p3/catalogue/a-s-fabrication-welding-work-sathya-colony-hyderabad-welding-job-works-up5x3li2ed-250.jpg" },
+            { id: 10, title: "MS Window Safety Grill Frame", category: "MS Window Work", img: "https://images.jdmagicbox.com/quickquotes/images_main/ms-window-fabrication-work-2217377211-0or2txjv.jpg" }
+        ];
+
+        let works = JSON.parse(localStorage.getItem('akruthi_works')) || initialWorks;
+        let cart = [];
+        let isAdminVisible = false;
+
+        function saveWorks() {
+            localStorage.setItem('akruthi_works', JSON.stringify(works));
+        }
+
+        function handleImgError(imageEl) {
+            imageEl.onerror = null;
+            imageEl.src = fallbackImage;
+        }
+
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = '';
+
+            works.forEach(work => {
+                const isSelected = cart.some(item => item.id === work.id);
+                const card = document.createElement('div');
+                card.className = 'work-card';
+                
+                const deleteBtnHtml = isAdminVisible ? 
+                    `<button class="btn btn-delete" onclick="deleteWork(${work.id})" title="Remove Image"><i class="fa-solid fa-trash"></i></button>` : '';
+
+                card.innerHTML = `
+                    <div class="img-container">
+                        <img src="${work.img}" alt="${work.title}" onerror="handleImgError(this)">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <div class="card-title">${work.title}</div>
+                            <div class="card-desc"><i class="fa-solid fa-tag"></i> ${work.category}</div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn btn-add-cart" onclick="toggleCart(${work.id})">
+                                ${isSelected ? '<i class="fa-solid fa-check"></i> Added' : '<i class="fa-solid fa-plus"></i> Select Design'}
+                            </button>
+                            ${deleteBtnHtml}
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function toggleAdminPanel() {
+            isAdminVisible = !isAdminVisible;
+            const panel = document.getElementById('adminPanel');
+            panel.classList.toggle('active', isAdminVisible);
+            renderGallery();
+        }
+
+        function addNewWork(e) {
+            e.preventDefault();
+            const title = document.getElementById('newTitle').value.trim();
+            const img = document.getElementById('newImgUrl').value.trim();
+            const category = document.getElementById('newCategory').value.trim();
+
+            const newWork = { id: Date.now(), title, img, category };
+            works.unshift(newWork);
+            saveWorks();
+            renderGallery();
+
+            document.getElementById('addImageForm').reset();
+            alert('New Design added successfully to Akruthi Steel Catalog!');
+        }
+
+        function deleteWork(id) {
+            if (confirm('Are you sure you want to remove this design image from the gallery?')) {
+                works = works.filter(w => w.id !== id);
+                cart = cart.filter(c => c.id !== id);
+                saveWorks();
+                renderGallery();
+                renderCart();
+            }
+        }
+
+        function toggleCart(id) {
+            const existingIndex = cart.findIndex(item => item.id === id);
+            if (existingIndex > -1) {
+                cart.splice(existingIndex, 1);
+            } else {
+                const work = works.find(w => w.id === id);
+                if (work) cart.push(work);
+            }
+            renderGallery();
+            renderCart();
+        }
+
+        function renderCart() {
+            const cartCount = document.getElementById('cartCount');
+            const selectedCountText = document.getElementById('selectedCountText');
+            const cartList = document.getElementById('cartList');
+
+            cartCount.innerText = cart.length;
+            selectedCountText.innerText = cart.length;
+
+            if (cart.length === 0) {
+                cartList.innerHTML = `<p style="color:#94a3b8; font-style:italic;">No designs selected yet. Click "Select Design" on any product above!</p>`;
+                return;
+            }
+
+            cartList.innerHTML = '';
+            cart.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'cart-item';
+                div.innerHTML = `
+                    <div class="cart-item-info">
+                        <img src="${item.img}" class="cart-item-img" alt="${item.title}" onerror="handleImgError(this)">
+                        <div>
+                            <strong style="color:#f8fafc; font-size:0.95rem;">${item.title}</strong>
+                            <div style="color:#94a3b8; font-size:0.8rem;">${item.category}</div>
+                        </div>
+                    </div>
+                    <button class="btn-remove-item" onclick="toggleCart(${item.id})"><i class="fa-solid fa-xmark"></i></button>
+                `;
+                cartList.appendChild(div);
+            });
+        }
+
+        function sendWhatsAppOrder(e) {
+            e.preventDefault();
+
+            if (cart.length === 0) {
+                alert('Please select at least one design reference from the gallery before booking!');
+                return;
+            }
+
+            const name = document.getElementById('custName').value.trim();
+            const mobile = document.getElementById('custMobile').value.trim();
+            const address = document.getElementById('custAddress').value.trim();
+            const notes = document.getElementById('custNotes').value.trim();
+
+            let designListStr = cart.map((item, idx) => 
+                `${idx + 1}. *${item.title}* (${item.category})\n   Image: ${item.img}`
+            ).join('\n');
+
+            const ownerWhatsApp = "919370550195";
+
+            const message = 
+`*NEW DESIGN INQUIRY & BOOKING*
+*Akruthi Steel Fabrication*
+
+*Customer Details:*
+• *Name:* ${name}
+• *Mobile:* ${mobile}
+• *Address:* ${address}
+${notes ? `• *Requirements:* ${notes}\n` : ''}
+*Booked / Selected Designs (${cart.length}):*
+${designListStr}
+
+Please review these details and contact me for measurements and quotation.`;
+
+            const encodedMsg = encodeURIComponent(message);
+            window.open(`https://wa.me/${ownerWhatsApp}?text=${encodedMsg}`, '_blank');
+        }
+
+        renderGallery();
+        renderCart();
+    </script>
+</body>
+</html>
